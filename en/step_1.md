@@ -1,45 +1,12 @@
-## What you will make
-OR
-## What you will do - change meta if you use this
+## Introduction
 
-A brief description - one or two sentences. 
+This project tests all custom Markdown block types from both the Raspberry Flavoured Markdown spec and the Kramdown RPF legacy spec. Each step covers one block type and shows examples from both specifications where a block exists in both specs.
 
---- print-only ---
+Where a block exists in both specs, the **Raspberry Flavoured Markdown** example is shown first, followed by the **Kramdown RPF legacy** example. A brief description and sample content is provided around each example.
 
-![ALT TEXT](images/IMAGE.png)
+The two specifications referenced throughout this project are:
 
---- /print-only ---
+- [Raspberry Flavoured Markdown — Draft Spec](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec) — the modern GFM-based alert syntax (`> [!BLOCK]`), used by `rpf-markdown-core`
+- [Kramdown RPF — Legacy Spec](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec) — the older `--- block ---` / `--- /block ---` syntax, used by `kramdown-rpf`
 
---- no-print ---
-
-[Editor embed](https://editor.raspberrypi.org/en/embed/viewer/project-slug)
-
---- /no-print ---
-
---- no-print ---
-
-Video embed
-
-<video width="640" height="360" controls>
-<source src="images/videoname.mp4" type="video/mp4">
-</video>
-
-Youtube embed 
-<html>
-<div style="position: relative; overflow: hidden; padding-top: 56.25%;">
-<iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/XXXXXXXXX?rel=0&cc_load_policy=1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-</iframe>
-</div><br>
-</html>
-
-Scratch embed
-<div class="scratch-preview">
- <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/XXXXXXXXX/?autostart=false" frameborder="0"></iframe>
-</div>
-
---- /no-print ---
-
-### You will need:
-- a
-- b
-- c
+The examples use a Raspberry Pi Sense HAT weather station as running sample content.
