@@ -21,19 +21,10 @@ steps:
   - title: Collapsible
     completion:
       - engaged
-  - title: Save
-    completion:
-      - engaged
   - title: No-print, print-only, and page break
     completion:
       - engaged
-  - title: Nested blocks
-    completion:
-      - engaged
-  - title: Info, Tip, and Debug blocks
-    completion:
-      - engaged
-  - title: Image
+  - title: Save, Info, Tip, and Debug blocks
     completion:
       - engaged
   - title: Inline class

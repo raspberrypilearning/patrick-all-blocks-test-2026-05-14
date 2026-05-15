@@ -1,125 +1,83 @@
-## No-print, print-only, and page break
+## Save, Info, Tip, and Debug blocks
 
-These three blocks control how content appears in print and PDF outputs.
+These three callout blocks highlight supplementary content: definitions, helpful advice, and debugging guidance.
 
----
+## Save
 
-## No-print
-
-Content inside a no-print block is visible on screen but hidden when printing or exporting to PDF. Use it for interactive embeds, videos, and editor links that have no meaning in a printed worksheet.
-
-### Raspberry Flavoured Markdown
-
-📖 [RFM spec — No-print](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#no-print)
-
-```markdown
-> [!NOPRINT]
->
-> [Open the weather station starter project in the editor](https://editor.raspberrypi.org/en/projects/weather-station)
-```
-
-> [!NOPRINT]
->
-> [Open the weather station starter project in the editor](https://editor.raspberrypi.org/en/projects/weather-station)
-
-### Kramdown RPF legacy
-
-📖 [Kramdown spec — No print](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#no-print)
-
-```markdown
---- no-print ---
-
-<video width="640" height="360" controls>
-<source src="images/weather-station-demo.mp4" type="video/mp4">
-</video>
-
---- /no-print ---
-```
-
---- no-print ---
-
-<video width="640" height="360" controls>
-<source src="images/weather-station-demo.mp4" type="video/mp4">
-</video>
-
---- /no-print ---
+The save block renders a "Save your project" panel with a standard heading. It takes no content.
 
 ---
 
-## Print-only
+#### Raspberry Flavoured Markdown
 
-Content inside a print-only block is visible only when printing or exporting to PDF. Use it to provide static alternatives to interactive content — for example, a screenshot in place of an embedded editor or video.
-
-### Raspberry Flavoured Markdown
-
-📖 [RFM spec — Print-only](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#print-only)
+📖 [RFM spec — Save block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#save-block)
 
 ```markdown
-> [!PRINTONLY]
->
-> ![A screenshot of the completed weather station project](images/weather-station-complete.png)
+> [!SAVE]
 ```
 
-> [!PRINTONLY]
->
-> ![A screenshot of the completed weather station project](images/weather-station-complete.png)
-
-### Kramdown RPF legacy
-
-📖 [Kramdown spec — Print only](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#print-only)
-
-```markdown
---- print-only ---
-
-![A screenshot of the completed weather station project](images/weather-station-complete.png)
-
---- /print-only ---
-```
-
---- print-only ---
-
-![A screenshot of the completed weather station project](images/weather-station-complete.png)
-
---- /print-only ---
+> [!SAVE]
 
 ---
 
-## Page break
-
-A page break forces a new page when printing or exporting to a PDF worksheet. Place it between sections to ensure clean page layout in printed output.
-
-### Raspberry Flavoured Markdown
-
-📖 [RFM spec — Page break](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#page-break)
-
-```markdown
-This content appears before the page break.
-
-<br class="page-break" />
-
-This content appears on a new page after the break.
-```
-
-This content appears before the page break.
-
-<br class="page-break" />
-
-This content appears on a new page after the break.
-
 ### Kramdown RPF legacy
 
-📖 [Kramdown spec — New page](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#new-page)
+📖 [Kramdown spec — Save](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#save)
 
 ```markdown
-First page content.
-
---- new-page ---
-
-Second page content.
+--- save ---
 ```
 
-First page content.
+--- save ---
 
---- new-page ---
+## Info block
 
-Second page content.
+Info blocks highlight definitions, key terms, or important background information. They render with a distinctive blue left border.
+
+📖 [RFM spec — Info block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#info-block)
+
+```markdown
+> [!INFO]
+>
+> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+```
+
+> [!INFO]
+>
+> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+
+---
+
+## Tip block
+
+Tip blocks surface useful advice or shortcuts that make the learner's experience smoother. They render with a "Tip" heading.
+
+📖 [RFM spec — Tip block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#tip-block)
+
+```markdown
+> [!TIP]
+>
+> When you type an opening bracket, the code editor will automatically add a closing bracket.
+```
+
+> [!TIP]
+>
+> When you type an opening bracket, the code editor will automatically add a closing bracket.
+
+---
+
+## Debug block
+
+Debug blocks contain advice for fixing common errors or unexpected behaviour. They render with a "Debugging" heading and help learners diagnose problems without leaving the step.
+
+📖 [RFM spec — Debug block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#debug-block)
+
+```markdown
+> [!DEBUG]
+>
+> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
+```
+
+> [!DEBUG]
+>
+> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.

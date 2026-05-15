@@ -1,57 +1,329 @@
-## Info, Tip, and Debug blocks
+## Quiz and knowledge quiz question
 
-These three callout blocks highlight supplementary content: definitions, helpful advice, and debugging guidance.
-
----
-
-## Info block
-
-Info blocks highlight definitions, key terms, or important background information. They render with a distinctive blue left border.
-
-📖 [RFM spec — Info block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#info-block)
-
-```markdown
-> [!INFO]
->
-> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
-```
-
-> [!INFO]
->
-> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+The `quiz` block renders a simple non-marking radio poll. The `question` block renders a self-marking quiz question with a correct answer, optional per-choice feedback, and a customisable legend.
 
 ---
 
-## Tip block
+### Quiz
 
-Tip blocks surface useful advice or shortcuts that make the learner's experience smoother. They render with a "Tip" heading.
+A `quiz` block is a simple radio-button poll with no correct answer. The question is defined in YAML front matter and choices use `( )` notation.
 
-📖 [RFM spec — Tip block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#tip-block)
+📖 [Kramdown spec — Quiz](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#quiz)
 
 ```markdown
-> [!TIP]
->
-> When you type an opening bracket, the code editor will automatically add a closing bracket.
+--- quiz ---
+---
+question: How are you feeling about this project so far?
+---
+
+- ( ) Ready to code!
+- ( ) Still warming up
+- ( ) A little confused — but curious
+
+--- /quiz ---
 ```
 
-> [!TIP]
->
-> When you type an opening bracket, the code editor will automatically add a closing bracket.
+--- quiz ---
+---
+question: How are you feeling about this project so far?
+---
+
+- ( ) Ready to code!
+- ( ) Still warming up
+- ( ) A little confused — but curious
+
+--- /quiz ---
 
 ---
 
-## Debug block
+### Knowledge quiz question — simple
 
-Debug blocks contain advice for fixing common errors or unexpected behaviour. They render with a "Debugging" heading and help learners diagnose problems without leaving the step.
+A `question` block is a self-marking question. Choices use `( )` for wrong answers and `(x)` for the correct answer.
 
-📖 [RFM spec — Debug block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#debug-block)
+📖 [Kramdown spec — Knowledge quiz question](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#knowledge-quiz-question)
 
 ```markdown
-> [!DEBUG]
->
-> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
+--- question ---
+
+What does `sense.get_temperature()` return?
+
+--- choices ---
+
+- ( ) A string
+- (x) A float
+- ( ) An integer
+
+--- /choices ---
+
+--- /question ---
 ```
 
-> [!DEBUG]
->
-> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
+--- question ---
+
+What does `sense.get_temperature()` return?
+
+--- choices ---
+
+- ( ) A string
+- (x) A float
+- ( ) An integer
+
+--- /choices ---
+
+--- /question ---
+
+---
+
+### Knowledge quiz question — with legend front matter
+
+The fieldset legend can be overridden with a YAML front matter section inside the `question` block.
+
+📖 [Kramdown spec — Knowledge quiz question (with legend)](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#with-legend-front-matter)
+
+```markdown
+--- question ---
+
+---
+legend: Question 1 of 3
+---
+
+What temperature scale does `sense.get_temperature()` use?
+
+--- choices ---
+
+- (x) Celsius
+- ( ) Fahrenheit
+- ( ) Kelvin
+
+--- /choices ---
+
+--- /question ---
+```
+
+--- question ---
+
+---
+legend: Question 1 of 3
+---
+
+What temperature scale does `sense.get_temperature()` use?
+
+--- choices ---
+
+- (x) Celsius
+- ( ) Fahrenheit
+- ( ) Kelvin
+
+--- /choices ---
+
+--- /question ---
+
+---
+
+### Knowledge quiz question — with per-choice feedback
+
+Individual `feedback` blocks attached to incorrect choices explain why they are wrong.
+
+📖 [Kramdown spec — Knowledge quiz question (with per-choice feedback)](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#with-per-choice-feedback)
+
+```markdown
+--- question ---
+
+Which Raspberry Pi GPIO pin mode should you use to turn an LED on and off?
+
+--- choices ---
+
+- (x) Output
+
+- ( ) Input
+
+  --- feedback ---
+  Input mode reads a signal — it cannot drive a component like an LED.
+  --- /feedback ---
+
+- ( ) PWM
+
+  --- feedback ---
+  PWM (pulse-width modulation) controls brightness, not simple on/off switching.
+  --- /feedback ---
+
+--- /choices ---
+
+--- /question ---
+```
+
+--- question ---
+
+Which Raspberry Pi GPIO pin mode should you use to turn an LED on and off?
+
+--- choices ---
+
+- (x) Output
+
+- ( ) Input
+
+  --- feedback ---
+  Input mode reads a signal — it cannot drive a component like an LED.
+  --- /feedback ---
+
+- ( ) PWM
+
+  --- feedback ---
+  PWM (pulse-width modulation) controls brightness, not simple on/off switching.
+  --- /feedback ---
+
+--- /choices ---
+
+--- /question ---
+
+---
+
+### Knowledge quiz question — with single (global) feedback
+
+A `feedback` block placed at the top of a `choices` block shows a hint for all wrong answers.
+
+📖 [Kramdown spec — Knowledge quiz question (with single feedback)](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#with-single-feedback)
+
+```markdown
+--- question ---
+
+What food will the bug reach when these instructions are followed?
+
+![A bug in a crossword-like maze with various bits of food scattered around](images/q2.svg)
+
+1. Forward
+2. Forward
+3. Forward
+4. Turn left
+5. Forward
+6. Forward
+7. Turn right
+8. Forward
+
+--- choices ---
+
+--- feedback ---
+Follow the instructions one at a time. Which food item does the bug reach?
+--- /feedback ---
+
+- (x) Apple
+- ( ) Banana
+- ( ) Orange
+- ( ) Doughnut
+
+--- /choices ---
+
+--- /question ---
+```
+
+--- question ---
+
+What food will the bug reach when these instructions are followed?
+
+![A bug in a crossword-like maze with various bits of food scattered around](images/q2.svg)
+
+1. Forward
+2. Forward
+3. Forward
+4. Turn left
+5. Forward
+6. Forward
+7. Turn right
+8. Forward
+
+--- choices ---
+
+--- feedback ---
+Follow the instructions one at a time. Which food item does the bug reach?
+--- /feedback ---
+
+- (x) Apple
+- ( ) Banana
+- ( ) Orange
+- ( ) Doughnut
+
+--- /choices ---
+
+--- /question ---
+
+---
+
+### Knowledge quiz question — with blocks in feedback
+
+Feedback blocks can contain fenced code blocks, including `blocks3` for Scratch block diagrams.
+
+📖 [Kramdown spec — Knowledge quiz question (with blocks in feedback)](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#with-blocks-in-feedback)
+
+````markdown
+--- question ---
+
+A cat sprite in Scratch has the following code attached to it:
+
+![A cat with three Scratch blocks](images/q1.svg)
+
+How would you make the cat sprite change size?
+
+--- choices ---
+
+- ( ) Press the space key
+
+  --- feedback ---
+  What code is attached to the
+  ```blocks3
+  when [space v] key pressed
+  ```
+  event block?
+  --- /feedback ---
+
+- ( ) Click the green flag
+
+  --- feedback ---
+  What code is attached to the
+  ```blocks3
+  when flag clicked
+  ```
+  event block?
+  --- /feedback ---
+
+- (x) Click on the cat sprite
+
+--- /choices ---
+
+--- /question ---
+````
+
+--- question ---
+
+A cat sprite in Scratch has the following code attached to it:
+
+![A cat with three Scratch blocks](images/q1.svg)
+
+How would you make the cat sprite change size?
+
+--- choices ---
+
+- ( ) Press the space key
+
+  --- feedback ---
+  What code is attached to the
+  ```blocks3
+  when [space v] key pressed
+  ```
+  event block?
+  --- /feedback ---
+
+- ( ) Click the green flag
+
+  --- feedback ---
+  What code is attached to the
+  ```blocks3
+  when flag clicked
+  ```
+  event block?
+  --- /feedback ---
+
+- (x) Click on the cat sprite
+
+--- /choices ---
+
+--- /question ---

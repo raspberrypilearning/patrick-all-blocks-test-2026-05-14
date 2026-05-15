@@ -15,7 +15,7 @@ Challenge blocks contain optional extension tasks for learners who want to go fu
 >
 > + Can you display the humidity alongside the temperature?
 >
->   ![A Sense HAT showing weather readings](images/sense-hat-display.png)
+>   ![A Sense HAT showing weather readings](images/sense-hat-emulator.png)
 >
 > + Can you change the display colour depending on whether it is hot or cold?
 >
@@ -30,7 +30,7 @@ Challenge blocks contain optional extension tasks for learners who want to go fu
 >
 > + Can you display the humidity alongside the temperature?
 >
->   ![A Sense HAT showing weather readings](images/sense-hat-display.png)
+>   ![A Sense HAT showing weather readings](images/sense-hat-emulator.png)
 >
 > + Can you change the display colour depending on whether it is hot or cold?
 >

@@ -9,14 +9,14 @@ Collapsible blocks (also called ingredient panels) contain supplementary content
 📖 [RFM spec — Collapsible](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#collapsible)
 
 ```markdown
-> [!ACCORDION] Downloading and installing the Raspberry Pi software
+> [!ACCORDION] How to open Thonny 
 >
-> Content here comes from the ingredient.
+> Click the **Raspberry Pi menu**, then **Programming**, then **Thonny Python IDE**.
 ```
 
-> [!ACCORDION] Downloading and installing the Raspberry Pi software
+> [!ACCORDION] How to open Thonny 
 >
-> Content here comes from the ingredient.
+> Click the **Raspberry Pi menu**, then **Programming**, then **Thonny Python IDE**.
 
 ---
 
@@ -45,54 +45,6 @@ title: How to open Thonny
 ---
 
 Click the **Raspberry Pi menu**, then **Programming**, then **Thonny Python IDE**.
-
---- /collapse ---
-
-**With a code block in the body**
-
-```markdown
---- collapse ---
----
-title: Starter code for weather.py
----
-
-<div class="c-code-filename">
-  weather.py
-</div>
-<pre dir="ltr" class="line-numbers" data-start="1"><code class="language-python" dir="ltr">
-from sense_hat import SenseHat
-from time import sleep
-
-sense = SenseHat()
-
-while True:
-    temperature = sense.get_temperature()
-    print(round(temperature, 1))
-    sleep(2)
-</code></pre>
-
---- /collapse ---
-```
-
---- collapse ---
----
-title: Starter code for weather.py
----
-
-<div class="c-code-filename">
-  weather.py
-</div>
-<pre dir="ltr" class="line-numbers" data-start="1"><code class="language-python" dir="ltr">
-from sense_hat import SenseHat
-from time import sleep
-
-sense = SenseHat()
-
-while True:
-    temperature = sense.get_temperature()
-    print(round(temperature, 1))
-    sleep(2)
-</code></pre>
 
 --- /collapse ---
 

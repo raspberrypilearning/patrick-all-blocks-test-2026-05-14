@@ -1,35 +1,23 @@
-## Nested blocks
+## Inline class
 
-Blocks can be nested — for example, a `[!TASK]` can contain one or more `[!HINT]` blocks. Consecutive `[!HINT]` blocks nested inside a task are grouped into a single hints panel.
+The inline class syntax (`{:class="..."}`) applies a CSS class to an inline element such as inline code. It is most commonly used to colour Scratch block references to match the block palette category colours.
 
 ---
 
-### Raspberry Flavoured Markdown
+### Kramdown RPF Legacy and Raspberry Flavoured Markdown
 
-📖 [RFM spec — Nested blocks](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#nested-blocks)
+📖 [RFM spec — Inline class](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#inline-class)
 
 ```markdown
-> [!TASK]
->
-> Read the temperature from the Sense HAT and display it on the LED matrix.
->
-> > [!HINT]
-> >
-> > Hint 1: Use `sense.get_temperature()` to read the temperature value.
->
-> > [!HINT]
-> >
-> > Hint 2: Round the result with `round(temperature, 1)` before displaying it.
+Navigate to the `Looks`{:class="block3looks"} category in the Scratch block palette to find the `say`{:class="block3looks"} block.
+
+The `Motion`{:class="block3motion"} category contains blocks for moving and rotating your sprite.
+
+Click the `Events`{:class="block3events"} category and drag a `when flag clicked`{:class="block3events"} block onto the scripts area to start your program.
 ```
 
-> [!TASK]
->
-> Read the temperature from the Sense HAT and display it on the LED matrix.
->
-> > [!HINT]
-> >
-> > Hint 1: Use `sense.get_temperature()` to read the temperature value.
->
-> > [!HINT]
-> >
-> > Hint 2: Round the result with `round(temperature, 1)` before displaying it.
+Navigate to the `Looks`{:class="block3looks"} category in the Scratch block palette to find the `say`{:class="block3looks"} block.
+
+The `Motion`{:class="block3motion"} category contains blocks for moving and rotating your sprite.
+
+Click the `Events`{:class="block3events"} category and drag a `when flag clicked`{:class="block3events"} block onto the scripts area to start your program.

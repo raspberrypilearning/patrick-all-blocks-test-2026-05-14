@@ -1,17 +1,75 @@
-## Image
+## Microbit and Scratch code blocks
 
-Standard Markdown image syntax is used throughout project content. The spec tests that images render correctly as paragraph-level content.
+Fenced code blocks with specialist language identifiers render with matching CSS classes, which are picked up by interactive widgets in the page.
 
 ---
 
-### Raspberry Flavoured Markdown
+### Microbit code block
 
-📖 [RFM spec — Image](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#image)
+A fenced code block with the language identifier `microbit` renders with `class="language-microbit"`, which the BBC micro:bit simulator widget uses to display an interactive preview.
 
-```markdown
-![A Sense HAT attached to a Raspberry Pi showing temperature and humidity readings](images/sense-hat.png)
+📖 [Kramdown spec — Microbit code block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#microbit-code-block)
+
+````markdown
+```microbit
+from microbit import *
+
+while True:
+    display.show(Image.HEART)
+    sleep(1000)
+    display.clear()
+    sleep(1000)
+```
+````
+
+```microbit
+from microbit import *
+
+while True:
+    display.show(Image.HEART)
+    sleep(1000)
+    display.clear()
+    sleep(1000)
 ```
 
-![A Sense HAT attached to a Raspberry Pi showing temperature and humidity readings](images/sense-hat.png)
+---
 
-The image above renders as a standard `<img>` element wrapped in a paragraph.
+### Scratch code blocks
+
+Fenced code blocks with the language `blocks3` (Scratch 3) or `blocks` (Scratch 2) render with the corresponding CSS class. The scratchblocks rendering library picks up these classes to draw visual Scratch block representations.
+
+**Scratch 3 (`blocks3`)**
+
+📖 [Kramdown spec — Scratch code blocks](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#scratch-code-blocks)
+
+````markdown
+```blocks3
+when flag clicked
+repeat (10)
+  move (10) steps
+end
+```
+````
+
+```blocks3
+when flag clicked
+repeat (10)
+  move (10) steps
+end
+```
+
+**Scratch 2 (`blocks`)**
+
+````markdown
+```blocks
+when flag clicked
+repeat (10)
+  move (10) steps
+```
+````
+
+```blocks
+when flag clicked
+repeat (10)
+  move (10) steps
+```
