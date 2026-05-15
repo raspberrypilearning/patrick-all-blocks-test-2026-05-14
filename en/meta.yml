@@ -24,25 +24,13 @@ steps:
   - title: Save
     completion:
       - engaged
-  - title: No-print
-    completion:
-      - engaged
-  - title: Print-only
-    completion:
-      - engaged
-  - title: Page break
+  - title: No-print, print-only, and page break
     completion:
       - engaged
   - title: Nested blocks
     completion:
       - engaged
-  - title: Info block
-    completion:
-      - engaged
-  - title: Tip block
-    completion:
-      - engaged
-  - title: Debug block
+  - title: Info, Tip, and Debug blocks
     completion:
       - engaged
   - title: Image

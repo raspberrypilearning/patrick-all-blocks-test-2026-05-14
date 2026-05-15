@@ -6,7 +6,11 @@ The save block renders a "Save your project" panel with a standard heading. It t
 
 ### Raspberry Flavoured Markdown
 
-📖 [RFM spec — Save block](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#save-block)
+📖 [RFM spec — Save block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#save-block)
+
+```markdown
+> [!SAVE]
+```
 
 > [!SAVE]
 
@@ -14,6 +18,10 @@ The save block renders a "Save your project" panel with a standard heading. It t
 
 ### Kramdown RPF legacy
 
-📖 [Kramdown spec — Save](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#save)
+📖 [Kramdown spec — Save](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#save)
+
+```markdown
+--- save ---
+```
 
 --- save ---

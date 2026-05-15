@@ -1,13 +1,75 @@
-## Debug block
+## Microbit and Scratch code blocks
 
-Debug blocks contain advice for fixing common errors or unexpected behaviour. They render with a "Debugging" heading and help learners diagnose problems without leaving the step.
+Fenced code blocks with specialist language identifiers render with matching CSS classes, which are picked up by interactive widgets in the page.
 
 ---
 
-### Raspberry Flavoured Markdown
+### Microbit code block
 
-📖 [RFM spec — Debug block](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#debug-block)
+A fenced code block with the language identifier `microbit` renders with `class="language-microbit"`, which the BBC micro:bit simulator widget uses to display an interactive preview.
 
-> [!DEBUG]
->
-> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
+📖 [Kramdown spec — Microbit code block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#microbit-code-block)
+
+````markdown
+```microbit
+from microbit import *
+
+while True:
+    display.show(Image.HEART)
+    sleep(1000)
+    display.clear()
+    sleep(1000)
+```
+````
+
+```microbit
+from microbit import *
+
+while True:
+    display.show(Image.HEART)
+    sleep(1000)
+    display.clear()
+    sleep(1000)
+```
+
+---
+
+### Scratch code blocks
+
+Fenced code blocks with the language `blocks3` (Scratch 3) or `blocks` (Scratch 2) render with the corresponding CSS class. The scratchblocks rendering library picks up these classes to draw visual Scratch block representations.
+
+**Scratch 3 (`blocks3`)**
+
+📖 [Kramdown spec — Scratch code blocks](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#scratch-code-blocks)
+
+````markdown
+```blocks3
+when flag clicked
+repeat (10)
+  move (10) steps
+end
+```
+````
+
+```blocks3
+when flag clicked
+repeat (10)
+  move (10) steps
+end
+```
+
+**Scratch 2 (`blocks`)**
+
+````markdown
+```blocks
+when flag clicked
+repeat (10)
+  move (10) steps
+```
+````
+
+```blocks
+when flag clicked
+repeat (10)
+  move (10) steps
+```

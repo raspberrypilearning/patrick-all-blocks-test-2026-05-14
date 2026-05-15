@@ -6,7 +6,13 @@ Collapsible blocks (also called ingredient panels) contain supplementary content
 
 ### Raspberry Flavoured Markdown
 
-📖 [RFM spec — Collapsible](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#collapsible)
+📖 [RFM spec — Collapsible](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#collapsible)
+
+```markdown
+> [!ACCORDION] Downloading and installing the Raspberry Pi software
+>
+> Content here comes from the ingredient.
+```
 
 > [!ACCORDION] Downloading and installing the Raspberry Pi software
 >
@@ -20,7 +26,18 @@ The legacy `collapse` block requires a YAML front matter section with a `title` 
 
 **Simple collapse**
 
-📖 [Kramdown spec — Collapse](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#collapse)
+📖 [Kramdown spec — Collapse](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#collapse)
+
+```markdown
+--- collapse ---
+---
+title: How to open Thonny
+---
+
+Click the **Raspberry Pi menu**, then **Programming**, then **Thonny Python IDE**.
+
+--- /collapse ---
+```
 
 --- collapse ---
 ---
@@ -32,6 +49,30 @@ Click the **Raspberry Pi menu**, then **Programming**, then **Thonny Python IDE*
 --- /collapse ---
 
 **With a code block in the body**
+
+```markdown
+--- collapse ---
+---
+title: Starter code for weather.py
+---
+
+<div class="c-code-filename">
+  weather.py
+</div>
+<pre dir="ltr" class="line-numbers" data-start="1"><code class="language-python" dir="ltr">
+from sense_hat import SenseHat
+from time import sleep
+
+sense = SenseHat()
+
+while True:
+    temperature = sense.get_temperature()
+    print(round(temperature, 1))
+    sleep(2)
+</code></pre>
+
+--- /collapse ---
+```
 
 --- collapse ---
 ---
@@ -56,6 +97,30 @@ while True:
 --- /collapse ---
 
 **Inside a list item**
+
+📖 [Kramdown spec — Collapse (inside a list item)](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#inside-a-list-item)
+
+````markdown
+1. Open Thonny on your Raspberry Pi.
+
+    --- collapse ---
+    ---
+    title: Opening Thonny
+    ---
+
+    Click **Raspberry Pi menu > Programming > Thonny Python IDE**.
+
+    --- /collapse ---
+
+1. Create a new file and save it as **weather.py**.
+
+1. Add your imports at the top of the file:
+
+    ```python
+    from sense_hat import SenseHat
+    from time import sleep
+    ```
+````
 
 1. Open Thonny on your Raspberry Pi.
 

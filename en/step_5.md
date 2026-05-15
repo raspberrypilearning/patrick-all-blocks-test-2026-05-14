@@ -8,7 +8,17 @@ Code blocks display syntax-highlighted source code with optional filename labels
 
 The RFM codeblock uses a standard fenced code block with metadata attributes on the opening fence line.
 
-📖 [RFM spec — Codeblock](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#codeblock)
+📖 [RFM spec — Codeblock](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#codeblock)
+
+````markdown
+```python filename="weather.py" line_numbers="true" line_number_start="3" line_highlights="3,5-6"
+while True:
+    temperature = sense.get_temperature()
+    humidity = sense.get_humidity()
+    sense.show_message(str(round(temperature, 1)))
+    sleep(2)
+```
+````
 
 ```python filename="weather.py" line_numbers="true" line_number_start="3" line_highlights="3,5-6"
 while True:
@@ -26,7 +36,16 @@ The legacy syntax uses a `--- code ---` block with a YAML front matter section f
 
 **Language only**
 
-📖 [Kramdown spec — Code block](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#code-block)
+📖 [Kramdown spec — Code block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#code-block)
+
+```markdown
+--- code ---
+---
+language: python
+---
+print("Hello, World!")
+--- /code ---
+```
 
 --- code ---
 ---
@@ -36,6 +55,16 @@ print("Hello, World!")
 --- /code ---
 
 **With filename**
+
+```markdown
+--- code ---
+---
+language: python
+filename: hello.py
+---
+print("Hello, World!")
+--- /code ---
+```
 
 --- code ---
 ---
@@ -47,6 +76,16 @@ print("Hello, World!")
 
 **With line numbers**
 
+```markdown
+--- code ---
+---
+language: python
+line_numbers: true
+---
+print("Hello, World!")
+--- /code ---
+```
+
 --- code ---
 ---
 language: python
@@ -57,6 +96,16 @@ print("Hello, World!")
 
 **With line highlights**
 
+```markdown
+--- code ---
+---
+language: python
+line_highlights: 1
+---
+print("Hello, World!")
+--- /code ---
+```
+
 --- code ---
 ---
 language: python
@@ -66,6 +115,23 @@ print("Hello, World!")
 --- /code ---
 
 **With all features**
+
+```markdown
+--- code ---
+---
+filename: weather.py
+language: python
+line_numbers: true
+line_number_start: 3
+line_highlights: 3, 5-6
+---
+while True:
+    temperature = sense.get_temperature()
+    humidity = sense.get_humidity()
+    sense.show_message(str(round(temperature, 1)))
+    sleep(2)
+--- /code ---
+```
 
 --- code ---
 ---
@@ -84,6 +150,14 @@ while True:
 
 **Plain fenced code block**
 
+````markdown
+```python
+while True:
+    temperature = sense.get_temperature()
+    sleep(2)
+```
+````
+
 ```python
 while True:
     temperature = sense.get_temperature()
@@ -91,6 +165,18 @@ while True:
 ```
 
 **With line numbers disabled**
+
+```markdown
+--- code ---
+---
+language: python
+line_numbers: false
+---
+while True:
+    temperature = sense.get_temperature()
+    sleep(2)
+--- /code ---
+```
 
 --- code ---
 ---

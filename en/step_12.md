@@ -1,13 +1,23 @@
-## Info block
+## Inline class
 
-Info blocks highlight definitions, key terms, or important background information. They render with a distinctive blue left border.
+The inline class syntax (`{:class="..."}`) applies a CSS class to an inline element such as inline code. It is most commonly used to colour Scratch block references to match the block palette category colours.
 
 ---
 
 ### Raspberry Flavoured Markdown
 
-📖 [RFM spec — Info block](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#info-block)
+📖 [RFM spec — Inline class](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#inline-class)
 
-> [!INFO]
->
-> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+```markdown
+Navigate to the `Looks`{:class="block3looks"} category in the Scratch block palette to find the `say`{:class="block3looks"} block.
+
+The `Motion`{:class="block3motion"} category contains blocks for moving and rotating your sprite.
+
+Click the `Events`{:class="block3events"} category and drag a `when flag clicked`{:class="block3events"} block onto the scripts area to start your program.
+```
+
+Navigate to the `Looks`{:class="block3looks"} category in the Scratch block palette to find the `say`{:class="block3looks"} block.
+
+The `Motion`{:class="block3motion"} category contains blocks for moving and rotating your sprite.
+
+Click the `Events`{:class="block3events"} category and drag a `when flag clicked`{:class="block3events"} block onto the scripts area to start your program.

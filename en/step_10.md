@@ -1,27 +1,57 @@
-## Page break
+## Info, Tip, and Debug blocks
 
-A page break forces a new page when printing or exporting to a PDF worksheet. Place it between sections to ensure clean page layout in printed output.
-
----
-
-### Raspberry Flavoured Markdown
-
-📖 [RFM spec — Page break](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#page-break)
-
-This content appears before the page break.
-
-<br class="page-break" />
-
-This content appears on a new page after the break.
+These three callout blocks highlight supplementary content: definitions, helpful advice, and debugging guidance.
 
 ---
 
-### Kramdown RPF legacy
+## Info block
 
-📖 [Kramdown spec — New page](http://localhost:3000/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/kramdown_rpf-legacy-spec#new-page)
+Info blocks highlight definitions, key terms, or important background information. They render with a distinctive blue left border.
 
-First page content.
+📖 [RFM spec — Info block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#info-block)
 
---- new-page ---
+```markdown
+> [!INFO]
+>
+> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+```
 
-Second page content.
+> [!INFO]
+>
+> **Humidity** is the amount of water vapour present in the air. It is expressed as a percentage — 100% means the air is fully saturated with moisture.
+
+---
+
+## Tip block
+
+Tip blocks surface useful advice or shortcuts that make the learner's experience smoother. They render with a "Tip" heading.
+
+📖 [RFM spec — Tip block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#tip-block)
+
+```markdown
+> [!TIP]
+>
+> When you type an opening bracket, the code editor will automatically add a closing bracket.
+```
+
+> [!TIP]
+>
+> When you type an opening bracket, the code editor will automatically add a closing bracket.
+
+---
+
+## Debug block
+
+Debug blocks contain advice for fixing common errors or unexpected behaviour. They render with a "Debugging" heading and help learners diagnose problems without leaving the step.
+
+📖 [RFM spec — Debug block](http://digital-docs.rpf-internal.org/docs/technology/codebases-and-products/raspberry-flavoured-markdown/specs/raspberry-flavoured-markdown-draft-spec#debug-block)
+
+```markdown
+> [!DEBUG]
+>
+> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
+```
+
+> [!DEBUG]
+>
+> If your Sense HAT displays `None`, check that the `sense_hat` library is installed and that the HAT is firmly seated on all 40 GPIO pins.
