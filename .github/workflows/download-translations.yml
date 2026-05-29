@@ -78,7 +78,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo chown -R "$USER:$USER" "$GITHUB_WORKSPACE"
-          chmod -R urwX "$GITHUB_WORKSPACE"
+          chmod -R u+rwX "$GITHUB_WORKSPACE"
 
       - name: Run NTTT restore and tidy on translated locales
         run: |
