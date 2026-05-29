@@ -5,14 +5,14 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to process translations on'
+        description: "Branch to process translations on"
         required: false
-        default: 'l10n_crowdin_translations'
+        default: "l10n_crowdin_translations"
         type: string
       locale:
         description: "Locale to process translations for (e.g. fr-FR). Leave blank to run all (except en)."
         required: false
-        default: ''
+        default: ""
         type: string
 
 permissions: write-all
@@ -29,14 +29,14 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.0'
-      
+          python-version: "3.11.0"
+
       - name: Install NTTT from GitHub repository
         run: |
           python -m pip install --upgrade pip
           pip install git+https://github.com/raspberrypilearning/nttt.git
 
-      - name: Run NTTT (single locale or all except 'en')
+      - name: Run NTTT restore and tidy (single locale or all except 'en')
         run: |
           set -euo pipefail
 
@@ -57,7 +57,7 @@ jobs:
 
             echo "Processing single locale: $LOCALE"
             pushd "$LOCALE" >/dev/null
-            printf "y\n" | nttt -Y YES || true
+            printf -Y on || true
             popd >/dev/null
           else
             # All-locales mode (current behaviour)
@@ -66,7 +66,7 @@ jobs:
                 lang_code="$(basename "$lang_dir")"
                 echo "Processing language: $lang_code"
                 pushd "$lang_dir" >/dev/null
-                printf "y\n" | nttt -Y YES || true
+                nttt -Y on || true
                 popd >/dev/null
               fi
             done

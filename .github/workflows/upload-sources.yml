@@ -17,6 +17,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.0"
+
+      - name: Install NTTT from GitHub repository
+        run: |
+          python -m pip install --upgrade pip
+          pip install githttps://github.com/raspberrypilearning/nttt.git
+
+      - name: Strip structural markers from en/
+        run: nttt --mode strip -i en -o en -Y on
+
       - name: Make sure CROWDIN_PROJECT_ID is set
         run: |
           if [ -z "${{ secrets.CROWDIN_PROJECT_ID }}" ]; then
