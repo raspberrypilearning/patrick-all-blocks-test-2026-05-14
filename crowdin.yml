@@ -4,10 +4,34 @@ base_path: "."
 base_url: "https://api.crowdin.com"
 preserve_hierarchy: true
 
+languages_mapping:
+  two_letters_code:
+    fr: fr-FR
+    de: de-DE
+    nl: nl-NL
+    uk: uk-UA
+    it: it-IT
+    hi: hi-IN
+    ar: ar-SA
+    ca: ca-CA
+    fi: fi-FI
+    el: el-GR
+    ja: ja-JP
+    ko: ko-KR
+    no: no-NO
+    pl: pl-PL
+    ro: ro-RO
+    ru: ru-RU
+    es-419: es-LA
+    xh: xh-ZA
+    vi: vi-VN
+
+
 files:
   - source: /en/**/*.*
-    translation: /%locale%/**/%original_file_name%
     ignore:
+      - /en/resources/*.mp4
       - /en/**/*.pdf
       - /en/**/*.mp3
       - /en/**/*.zip
+    translation: /%locale%/**/%original_file_name%
