@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # Manual triggering
     inputs:
       language_code:
-        description: "Language code to download translations for (leave empty to download all languages)"
+        description: "Language code to download translations for, e.g. 'nl', 'fr'. Leave empty to download all languages."
         required: false
         default: ""
         type: string
@@ -42,7 +42,7 @@ jobs:
       - name: Install NTTT from GitHub repository
         run: |
           python -m pip install --upgrade pip
-          pip install git+https://github.com/raspberrypilearning/nttt.git
+          pip install git+https://github.com/raspberrypilearning/nttt.git@main
 
       - name: Download all translations from Crowdin
         if: ${{ inputs.language_code == '' }}
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download selected translations from Crowdin
-        if: ${{ inputs.language_code == '' }}
+        if: ${{ inputs.language_code != '' }}
         uses: crowdin/github-action@v2
         with:
           create_pull_request: false
@@ -84,33 +84,44 @@ jobs:
         run: |
           set -euo pipefail
 
-          LANGUAGE_CODE="${{ inputs.language_code }}"
-          if [[ -n "$LANGUAGE_CODE" ]]; then
-            if [[ "$LANGUAGE_CODE" == "en" ]]; then
+          # Crowdin maps language codes to on-disk folders via crowdin.yml (e.g. fr -> fr-FR).
+          # Discover the folders Crowdin actually changed instead of using the input code as a path.
+          discover_downloaded_locale_dirs() {
+            git status --porcelain \
+              | sed 's/^.. //' \
+              | cut -d/ -f1 \
+              | sort -u \
+              | grep -Ev '^(en|\.github)$' || true
+          }
+
+          run_nttt_on_locale() {
+            local locale_dir="$1"
+            if [[ "$locale_dir" == "en" ]]; then
               echo "Skipping 'en' locale by design."
-              exit 0
+              return 0
             fi
-
-            if [[ ! -d "$LANGUAGE_CODE" ]]; then
-              echo "Locale directory '$LANGUAGE_CODE' does not exist; nothing to restore."
-              exit 0
+            if [[ ! -d "$locale_dir" ]]; then
+              echo "::error::Locale directory '$locale_dir' does not exist."
+              exit 1
             fi
+            echo "Processing locale directory: $locale_dir"
+            nttt -Y on -i "$locale_dir" -o "$locale_dir" -e en -l "$locale_dir"
+          }
 
-            echo "Processing single locale: $LANGUAGE_CODE"
-            pushd "$LANGUAGE_CODE" >/dev/null
-            nttt -Y on || true
-            popd >/dev/null
-          else
-            for lang_dir in */; do
-              if [[ -d "$lang_dir" && "$lang_dir" != "en/" && "$lang_dir" != ".github/" ]]; then
-                lang_code="$(basename "$lang_dir")"
-                echo "Processing language: $lang_code"
-                pushd "$lang_dir" >/dev/null
-                nttt -Y on || true
-                popd >/dev/null
-              fi
-            done
+          locale_dirs=()
+          while IFS= read -r locale_dir; do
+            [[ -n "$locale_dir" ]] && locale_dirs+=("$locale_dir")
+          done < <(discover_downloaded_locale_dirs)
+
+          if [[ ${#locale_dirs[@]} -eq 0 ]]; then
+            echo "No locale directories changed by Crowdin download; skipping NTTT."
+            exit 0
           fi
+
+          echo "Locale directories to process: ${locale_dirs[*]}"
+          for locale_dir in "${locale_dirs[@]}"; do
+            run_nttt_on_locale "$locale_dir"
+          done
 
       - name: Open pull request with restored translations
         run: |
