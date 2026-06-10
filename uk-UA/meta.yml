@@ -1,0 +1,39 @@
+---
+title: Тест усіх блоків
+hero_image: images/banner.png
+description: Тестовий проєкт, що містить усі типи користувацьких блоків Markdown як зі специфікації Raspberry Flavoured Markdown, так і зі застарілої специфікації Kramdown RPF.
+listed: false
+pdf: false
+steps:
+  - title: Вступ
+  - title: Підказки
+    completion:
+      - заручений
+  - title: Завдання
+    completion:
+      - заручений
+  - title: Виклик
+    challenge: true
+    completion:
+      - зовнішній
+  - title: Блок коду
+    completion:
+      - заручений
+  - title: Складаний
+    completion:
+      - заручений
+  - title: Без друку, лише друк та розрив сторінки
+    completion:
+      - заручений
+  - title: Блоки «Зберегти», «Інформація», «Порада» та «Налагодження»
+    completion:
+      - заручений
+  - title: Вбудований клас
+    completion:
+      - заручений
+  - title: Вікторина та питання вікторини на знання
+    completion:
+      - заручений
+  - title: Блоки коду Microbit та Scratch
+    completion:
+      - заручений
