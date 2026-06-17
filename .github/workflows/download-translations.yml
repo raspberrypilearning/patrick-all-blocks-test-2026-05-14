@@ -7,9 +7,9 @@ on:
   workflow_dispatch: # Manual triggering
     inputs:
       language_code:
-        description: "Language code to download translations for, e.g. 'nl', 'fr'. Leave empty to download all languages."
+        description: 'Language code to download translations for (leave empty to download all languages)'
         required: false
-        default: ""
+        default: ''
         type: string
 
 concurrency:
@@ -34,130 +34,40 @@ jobs:
         with:
           ref: master
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11.0"
-
-      - name: Install NTTT from GitHub repository
-        run: |
-          python -m pip install --upgrade pip
-          pip install git+https://github.com/raspberrypilearning/nttt.git@main
-
       - name: Download all translations from Crowdin
-        if: ${{ inputs.language_code == '' }}
         uses: crowdin/github-action@v2
         with:
-          create_pull_request: false
+          create_pull_request: true
           crowdin_branch_name: master
           download_translations: true
-          push_translations: false
+          localization_branch_name: l10n_crowdin_translations
+          pull_request_base_branch_name: "master"
+          pull_request_body: "New Crowdin pull request with translations"
+          pull_request_title: "New Crowdin translations"
           upload_sources: false
           upload_translations: false
         env:
           CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ inputs.language_code == '' }}
 
       - name: Download selected translations from Crowdin
-        if: ${{ inputs.language_code != '' }}
         uses: crowdin/github-action@v2
         with:
-          create_pull_request: false
+          create_pull_request: true
           crowdin_branch_name: master
           download_language: ${{ inputs.language_code }}
           download_translations: true
+          localization_branch_name: l10n_crowdin_translations-${{ inputs.language_code }}
+          pull_request_base_branch_name: "master"
+          pull_request_body: "New Crowdin pull request with translations"
+          pull_request_title: "New Crowdin translations for ${{ inputs.language_code }}"
           upload_sources: false
           upload_translations: false
-          push_translations: false
         env:
           CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Make downloaded translations writable
-        run: |
-          set -euo pipefail
-          sudo chown -R "$USER:$USER" "$GITHUB_WORKSPACE"
-          chmod -R u+rwX "$GITHUB_WORKSPACE"
+        if: ${{ inputs.language_code != '' }}
 
-      - name: Run NTTT restore and tidy on translated locales
-        run: |
-          set -euo pipefail
-
-          # Crowdin maps language codes to on-disk folders via crowdin.yml (e.g. fr -> fr-FR).
-          # Discover the folders Crowdin actually changed instead of using the input code as a path.
-          discover_downloaded_locale_dirs() {
-            git status --porcelain \
-              | sed 's/^.. //' \
-              | cut -d/ -f1 \
-              | sort -u \
-              | grep -Ev '^(en|\.github)$' || true
-          }
-
-          run_nttt_on_locale() {
-            local locale_dir="$1"
-            if [[ "$locale_dir" == "en" ]]; then
-              echo "Skipping 'en' locale by design."
-              return 0
-            fi
-            if [[ ! -d "$locale_dir" ]]; then
-              echo "::error::Locale directory '$locale_dir' does not exist."
-              exit 1
-            fi
-            echo "Processing locale directory: $locale_dir"
-            nttt -Y on -i "$locale_dir" -o "$locale_dir" -e en -l "$locale_dir"
-          }
-
-          locale_dirs=()
-          while IFS= read -r locale_dir; do
-            [[ -n "$locale_dir" ]] && locale_dirs+=("$locale_dir")
-          done < <(discover_downloaded_locale_dirs)
-
-          if [[ ${#locale_dirs[@]} -eq 0 ]]; then
-            echo "No locale directories changed by Crowdin download; skipping NTTT."
-            exit 0
-          fi
-
-          echo "Locale directories to process: ${locale_dirs[*]}"
-          for locale_dir in "${locale_dirs[@]}"; do
-            run_nttt_on_locale "$locale_dir"
-          done
-
-      - name: Open pull request with restored translations
-        run: |
-          set -euo pipefail
-
-          LANGUAGE_CODE="${{ inputs.language_code }}"
-          if [[ -n "$LANGUAGE_CODE" ]]; then
-            BRANCH="l10n_crowdin_translations-$LANGUAGE_CODE"
-            TITLE="New Crowdin translations for $LANGUAGE_CODE"
-          else
-            BRANCH="l10n_crowdin_translations"
-            TITLE="New Crowdin translations"
-          fi
-
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action - Crowdin Download"
-
-          if git diff --quiet && git diff --staged --quiet && [[ -z "$(git status --porcelain)" ]]; then
-            echo "No translation changes detected, nothing to push."
-            exit 0
-          fi
-
-          git checkout -B "$BRANCH"
-          git add .
-          git commit -m "Apply Crowdin translations with NTTT restore and tidy"
-          git push origin "$BRANCH" --force
-
-          pr_state="$(gh pr view "$BRANCH" --json state --jq '.state' 2>/dev/null || true)"
-          if [[ "$pr_state" == "OPEN" ]]; then
-            echo "Pull request for $BRANCH already exists; updated by force push."
-          else
-            gh pr create \
-              --base master \
-              --head "$BRANCH" \
-              --title "$TITLE" \
-              --body "New Crowdin pull request with translations (NTTT restored and tidied)"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

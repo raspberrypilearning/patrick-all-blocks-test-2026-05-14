@@ -1,38 +1,14 @@
-title: All blocks test
+title: Project title in sentence case
 hero_image: images/banner.png
-description: A test project containing every custom Markdown block type from both the Raspberry Flavoured Markdown spec and the Kramdown RPF legacy spec.
+description: A short description of the project
 listed: false
 pdf: false
 steps:
-  - title: Introduction
-  - title: Hints
+  - title: What you will make
+  - title: Step title
     completion:
-      - engaged
-  - title: Task
-    completion:
-      - engaged
+      - engaged      
   - title: Challenge
     challenge: true
     completion:
       - external
-  - title: Code block
-    completion:
-      - engaged
-  - title: Collapsible
-    completion:
-      - engaged
-  - title: No-print, print-only, and page break
-    completion:
-      - engaged
-  - title: Save, Info, Tip, and Debug blocks
-    completion:
-      - engaged
-  - title: Inline class
-    completion:
-      - engaged
-  - title: Quiz and knowledge quiz question
-    completion:
-      - engaged
-  - title: Microbit and Scratch code blocks
-    completion:
-      - engaged

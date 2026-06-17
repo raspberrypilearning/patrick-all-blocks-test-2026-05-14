@@ -36,7 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install git+https://github.com/raspberrypilearning/nttt.git
 
-      - name: Run NTTT restore and tidy (single locale or all except 'en')
+      - name: Run NTTT (single locale or all except 'en')
         run: |
           set -euo pipefail
 
@@ -57,7 +57,7 @@ jobs:
 
             echo "Processing single locale: $LOCALE"
             pushd "$LOCALE" >/dev/null
-            nttt -Y on -l "$LOCALE"
+            printf "y\n" | nttt -Y YES || true
             popd >/dev/null
           else
             # All-locales mode (current behaviour)
@@ -66,7 +66,7 @@ jobs:
                 lang_code="$(basename "$lang_dir")"
                 echo "Processing language: $lang_code"
                 pushd "$lang_dir" >/dev/null
-                nttt -Y on -l "$lang_code"
+                printf "y\n" | nttt -Y YES || true
                 popd >/dev/null
               fi
             done
